@@ -9,119 +9,126 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #f4f4f9, #e6e6e6);
+            background-color: #f4f4f9;
             color: #333;
             text-align: center;
         }
         .header {
             padding: 20px;
+            background: white;
         }
         .main {
-            padding: 30px;
+            padding: 20px;
             max-width: 600px;
             margin: auto;
             background: white;
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
-        .footer {
-            padding: 10px;
-            font-size: 0.9em;
+        .banner {
+            background: #2a9df4;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
         }
         .formulario {
-            margin: 20px auto;
-            max-width: 400px;
-            text-align: left;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
-        .formulario input {
+        .formulario input, .formulario button, .formulario label {
             width: 100%;
-            padding: 15px;
+            padding: 12px;
             margin-top: 10px;
             border-radius: 8px;
             border: 1px solid #ccc;
             font-size: 16px;
         }
+        .file-upload {
+            border: 2px dashed #ff4081;
+            padding: 15px;
+            background: #ffe6f0;
+            color: #ff4081;
+            cursor: pointer;
+        }
         .button {
-            width: 100%;
-            background-color: #ff9933;
+            background-color: #ff4081;
             color: white;
             font-size: 18px;
             font-weight: bold;
-            padding: 15px;
-            border-radius: 8px;
             border: none;
             cursor: pointer;
             transition: 0.3s;
         }
         .button:hover {
-            background-color: #e68a00;
+            background-color: #e60073;
         }
-        /* Estilos para o banner de cookies */
-        #cookie-banner {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.8);
+        .footer {
+            padding: 10px;
+            font-size: 0.9em;
+        }
+        .botao-contato {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .botao-contato a {
+            text-decoration: none;
             color: white;
-            text-align: center;
-            padding: 15px;
-            font-size: 14px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
         }
-        #cookie-banner a {
-            color: #ff9933;
-            text-decoration: underline;
+        .ligue-nos {
+            background-color: #d81b60;
         }
-        #cookie-banner button {
-            background-color: #ff9933;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin-left: 10px;
-            cursor: pointer;
-            border-radius: 5px;
+        .liguem-me {
+            background-color: #2196F3;
         }
     </style>
 </head>
 <body>
     <div class="header">
         <img src="https://raw.githubusercontent.com/Misterymike/Endesa/main/endesa.jpg" alt="Endesa" style="max-width: 300px; width:100%; height:auto;">
-        <h1>Endesa - Poupe na sua Fatura de Energia</h1>
     </div>
 
     <div class="main">
-        <p>Poupe agora e receba 70€ de oferta!</p>
-        <ul style="list-style-type:none; padding:0;">
-            <li>✅ 70€ em oferta para novos clientes</li>
-            <li>✅ Sem burocracias, processo simples e rápido</li>
-            <li>✅ Tarifas competitivas e transparentes</li>
-        </ul>
+        <h1>Descubra quanto pode poupar com a Endesa!</h1>
 
-        <form action="https://formsubmit.co/Miguelferreira@presentiluminado.pt" method="POST" class="formulario">
-            <input type="text" name="Nome" placeholder="Nome" required>
-            <input type="tel" name="Telemóvel" placeholder="Telemóvel" required>
-            <input type="email" name="Email" placeholder="E-mail" required>
-            <br>
-            <button type="submit" class="button">Enviar pedido</button>
+        <div class="banner">
+            <h2>TEM A SUA FATURA À MÃO?</h2>
+            <p>Faça aqui o upload da sua fatura e garanta o melhor preço.</p>
+        </div>
+
+        <form action="https://formsubmit.co/Miguelferreira@presentiluminado.pt" method="POST" class="formulario" enctype="multipart/form-data">
+            <label>📌 Nome e Apelido</label>
+            <input type="text" name="Nome" placeholder="Nome e Apelido" required>
+
+            <label>📞 Telefone</label>
+            <input type="tel" name="Telemóvel" placeholder="Telefone" required>
+
+            <label class="file-upload">
+                📎 Selecionar ou arrastar a fatura
+                <input type="file" name="Fatura" accept=".pdf,.jpg,.png" required style="display:none;">
+            </label>
+
+            <input type="checkbox" required> 
+            <label>Autorizo a Endesa a utilizar os meus dados para contacto. Consulte a nossa <a href="#">Política de Privacidade</a>.</label>
+
+            <button type="submit" class="button">ENVIAR</button>
         </form>
 
-        <a href="https://wa.me/351935358897" class="button" style="margin-top: 20px;">Contactar via WhatsApp</a>
+        <div class="botao-contato">
+            <a href="tel:+351935358897" class="ligue-nos">📞 Ligue-nos Grátis</a>
+            <a href="https://wa.me/351935358897" class="liguem-me">📲 Liguem-me Grátis</a>
+        </div>
     </div>
 
     <div class="footer">
         <p>Endesa © Todos os direitos reservados.</p>
     </div>
-
-    <!-- Banner de Cookies e Proteção de Dados -->
-    <div id="cookie-banner">
-        Este site utiliza cookies para melhorar a sua experiência. Ao continuar, concorda com a nossa 
-        <a href="#">Política de Privacidade</a> e <a href="#">Proteção de Dados</a>.
-        <button onclick="aceitarCookies()">Aceitar</button>
-    </div>
-
-    <script>
-        function aceitarCookies() {
-            document.getElementById('cookie-banner').style.display = 'none';
-        }
-    </script>
 </body>
 </html>
