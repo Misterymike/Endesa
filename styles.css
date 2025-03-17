@@ -1,57 +1,68 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
+    margin: 0;
+    padding: 0;
     background-color: #f4f4f4;
 }
 
-header img {
+#logo {
     width: 200px;
-    margin: 20px auto;
-    display: block;
-}
-
-.container {
-    max-width: 400px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
 .oferta {
     background: yellow;
     padding: 10px;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 1.2em;
+}
+
+h1 {
+    font-size: 1.5em;
+    margin: 20px;
 }
 
 .form-container {
-    background: #007bff;
-    padding: 20px;
-    border-radius: 10px;
+    background: #1e73be;
     color: white;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
+    padding: 20px;
+    width: 80%;
+    margin: auto;
+    border-radius: 10px;
 }
 
 input, button {
-    margin: 10px 0;
+    width: 90%;
     padding: 10px;
+    margin: 10px;
     border-radius: 5px;
+    border: none;
 }
 
 button {
-    background: #ff4081;
+    background: #ff0066;
     color: white;
-    border: none;
+    font-size: 1.2em;
     cursor: pointer;
 }
 
-#lumin-box {
+button:hover {
+    background: #cc0052;
+}
+
+.contact-buttons {
+    margin-top: 20px;
+}
+
+.ligar {
+    background: #ff0066;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#lumin-container {
     position: fixed;
     bottom: 20px;
     left: 20px;
@@ -62,8 +73,7 @@ button {
     align-items: center;
 }
 
-#lumin-box img {
+#lumin-avatar {
     width: 50px;
-    height: 50px;
     margin-right: 10px;
 }
