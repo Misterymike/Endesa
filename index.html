@@ -5,51 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Endesa</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
 </head>
 <body>
 
-    <header>
-        <img src="endesa.jpg" alt="Endesa Logo" id="logo">
-    </header>
-
-    <div class="oferta">
+    <div class="banner">
         🎉 <strong>70€ de oferta</strong> na sua primeira fatura ao aderir! 🎉
     </div>
 
-    <h1>Descubra quanto pode poupar com a Endesa!</h1>
+    <div class="container">
+        <img src="endesa.jpg" alt="Endesa" class="logo">
+        <h1>Descubra quanto pode poupar com a Endesa!</h1>
 
-    <div class="form-container">
-        <h2>📄 TEM A SUA FATURA À MÃO?</h2>
-        <p>Faça aqui o upload da sua fatura e garanta o melhor preço.</p>
+        <div class="form-container">
+            <h2>📄 TEM A SUA FATURA À MÃO?</h2>
+            <p>Faça aqui o upload da sua fatura e garanta o melhor preço.</p>
 
-        <label for="nome">📌 Nome e Apelido</label>
-        <input type="text" id="nome" placeholder="Nome e Apelido">
+            <label>📌 Nome e Apelido</label>
+            <input type="text" placeholder="Nome e Apelido">
 
-        <label for="telefone">📞 Telefone</label>
-        <input type="tel" id="telefone" placeholder="Seu telefone">
+            <label>📞 Telefone</label>
+            <input type="text" placeholder="Seu telefone">
 
-        <label for="fatura">📎 Selecionar ou arrastar a fatura</label>
-        <input type="file" id="fatura">
+            <label>📎 Selecionar ou arrastar a fatura</label>
+            <input type="file">
 
-        <div class="checkbox">
-            <input type="checkbox" id="autorizacao">
-            <label for="autorizacao">Autorizo a Endesa a utilizar os meus dados para contacto. Consulte a nossa <a href="#">Política de Privacidade</a>.</label>
+            <div class="checkbox">
+                <input type="checkbox">
+                <span>Autorizo a Endesa a utilizar os meus dados para contacto. Consulte a nossa <a href="#">Política de Privacidade</a>.</span>
+            </div>
+
+            <button class="btn">ENVIAR</button>
         </div>
-
-        <button id="enviar">ENVIAR</button>
     </div>
 
-    <div class="contact-buttons">
-        <button class="ligar">📞 Ligue-nos Grátis</button>
-        <button class="ligar">📲 Liguem-me Grátis</button>
-    </div>
-
-    <!-- Avatar do Lumin -->
+    <!-- Lumin Vendedor -->
     <div id="lumin-container">
-        <img src="lumin_vendedor.png" alt="Lumin Vendedor" id="lumin-avatar">
-        <p id="lumin-mensagem">🎙️ Olá! Sou o Lumin, o assistente virtual da Endesa! 🔥</p>
+        <img src="lumin_vendedor.png" alt="Lumin Vendedor" class="lumin-avatar">
+        <div id="lumin-box">
+            <span id="lumin-text">🎙️ Olá! Sou o Lumin, o assistente virtual da Endesa! 🔥</span>
+        </div>
     </div>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
