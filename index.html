@@ -3,51 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Endesa - Poupe na Fatura</title>
+    <title>Endesa</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
+
     <header>
-        <img src="endesa-logo.png" alt="Endesa">
+        <img src="endesa.jpg" alt="Endesa Logo" id="logo">
     </header>
 
-    <div class="container">
-        <div class="oferta">
-            🎉 <b>70€ de oferta</b> na sua primeira fatura ao aderir! 🎉
-        </div>
-
-        <h1>Descubra quanto pode poupar com a Endesa!</h1>
-
-        <div class="form-container">
-            <div class="form-title">📄 TEM A SUA FATURA À MÃO?</div>
-            <p>Faça aqui o upload da sua fatura e garanta o melhor preço.</p>
-
-            <form id="energyForm">
-                <label for="nome">📌 Nome e Apelido</label>
-                <input type="text" id="nome" placeholder="Nome e Apelido" required>
-
-                <label for="telefone">📞 Telefone</label>
-                <input type="tel" id="telefone" placeholder="Seu telefone" required>
-
-                <label for="fatura">📎 Selecionar ou arrastar a fatura</label>
-                <input type="file" id="fatura" required>
-
-                <label class="checkbox">
-                    <input type="checkbox" required>
-                    Autorizo a Endesa a utilizar os meus dados para contacto. Consulte a nossa
-                    <a href="#">Política de Privacidade</a>.
-                </label>
-
-                <button type="submit">ENVIAR</button>
-            </form>
-        </div>
+    <div class="oferta">
+        🎉 <strong>70€ de oferta</strong> na sua primeira fatura ao aderir! 🎉
     </div>
 
-    <div id="lumin-box">
-        <img src="lumin-avatar.png" alt="Lumin AI">
-        <div id="lumin-message">🔊 Olá! Sou o Lumin, o assistente virtual da Endesa! 🔥</div>
+    <h1>Descubra quanto pode poupar com a Endesa!</h1>
+
+    <div class="form-container">
+        <h2>📄 TEM A SUA FATURA À MÃO?</h2>
+        <p>Faça aqui o upload da sua fatura e garanta o melhor preço.</p>
+
+        <label for="nome">📌 Nome e Apelido</label>
+        <input type="text" id="nome" placeholder="Nome e Apelido">
+
+        <label for="telefone">📞 Telefone</label>
+        <input type="tel" id="telefone" placeholder="Seu telefone">
+
+        <label for="fatura">📎 Selecionar ou arrastar a fatura</label>
+        <input type="file" id="fatura">
+
+        <div class="checkbox">
+            <input type="checkbox" id="autorizacao">
+            <label for="autorizacao">Autorizo a Endesa a utilizar os meus dados para contacto. Consulte a nossa <a href="#">Política de Privacidade</a>.</label>
+        </div>
+
+        <button id="enviar">ENVIAR</button>
     </div>
 
-    <script src="script.js"></script>
+    <div class="contact-buttons">
+        <button class="ligar">📞 Ligue-nos Grátis</button>
+        <button class="ligar">📲 Liguem-me Grátis</button>
+    </div>
+
+    <!-- Avatar do Lumin -->
+    <div id="lumin-container">
+        <img src="lumin_vendedor.png" alt="Lumin Vendedor" id="lumin-avatar">
+        <p id="lumin-mensagem">🎙️ Olá! Sou o Lumin, o assistente virtual da Endesa! 🔥</p>
+    </div>
+
 </body>
 </html>
