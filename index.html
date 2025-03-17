@@ -1,151 +1,70 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Endesa - Poupe na sua Fatura de Energia</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-            text-align: center;
-        }
-        .header {
-            padding: 20px;
-            background: white;
-        }
-        .main {
-            padding: 20px;
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        .banner {
-            background: #2a9df4;
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            font-weight: bold;
-        }
-        .formulario {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .formulario input, .formulario button, .formulario label {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-            display: block;
-            text-align: left;
-        }
-        .file-upload {
-            border: 2px dashed #ff4081;
-            padding: 15px;
-            background: #ffe6f0;
-            color: #ff4081;
-            cursor: pointer;
-            text-align: center;
-        }
-        .button {
-            background-color: #ff4081;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .button:hover {
-            background-color: #e60073;
-        }
-        .footer {
-            padding: 10px;
-            font-size: 0.9em;
-        }
-        .botao-contato {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-        }
-        .botao-contato a {
-            text-decoration: none;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-        }
-        .ligue-nos {
-            background-color: #d81b60;
-        }
-        .liguem-me {
-            background-color: #2196F3;
-        }
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .checkbox-container label {
-            font-size: 14px;
-            text-align: left;
-        }
-    </style>
+    <title>Endesa - Poupe na sua Fatura</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="header">
-        <img src="https://raw.githubusercontent.com/Misterymike/Endesa/main/endesa.jpg" alt="Endesa" style="max-width: 300px; width:100%; height:auto;">
-    </div>
 
-    <div class="main">
+    <div class="container">
+        <img src="https://raw.githubusercontent.com/Misterymike/Endesa/main/endesa.jpg" alt="Endesa" class="logo">
+
         <h1>Descubra quanto pode poupar com a Endesa!</h1>
 
-        <div class="banner">
+        <div class="offer-banner">
+            🎉 <b>70€ de oferta</b> na sua primeira fatura ao aderir! 🎉
+        </div>
+
+        <div class="blue-box">
             <h2>TEM A SUA FATURA À MÃO?</h2>
             <p>Faça aqui o upload da sua fatura e garanta o melhor preço.</p>
         </div>
 
-        <form action="https://formsubmit.co/Miguelferreira@presentiluminado.pt" method="POST" class="formulario" enctype="multipart/form-data">
-            <label>📌 Nome e Apelido</label>
-            <input type="text" name="Nome" placeholder="Nome e Apelido" required>
+        <form action="https://formsubmit.co/teu-email-aqui" method="POST" enctype="multipart/form-data">
+            <label for="nome">📌 Nome e Apelido</label>
+            <input type="text" id="nome" name="nome" required placeholder="Nome e Apelido">
 
-            <label>📞 Telefone</label>
-            <input type="tel" name="Telemóvel" placeholder="Telefone" required>
+            <label for="telefone">📞 Telefone</label>
+            <input type="tel" id="telefone" name="telefone" required placeholder="Seu telefone">
 
-            <label class="file-upload">
-                📎 Selecionar ou arrastar a fatura
-                <input type="file" name="Fatura" accept=".pdf,.jpg,.png" required style="display:none;">
-            </label>
+            <label for="fatura">📎 Selecionar ou arrastar a fatura</label>
+            <input type="file" id="fatura" name="fatura" accept="image/*,.pdf" required>
 
-            <div class="checkbox-container">
-                <input type="checkbox" required> 
-                <label>Autorizo a Endesa a utilizar os meus dados para contacto. Consulte a nossa <a href="#">Política de Privacidade</a>.</label>
+            <div class="consent">
+                <input type="checkbox" id="consentimento" required>
+                <label for="consentimento">
+                    Autorizo a Endesa a utilizar os meus dados para contacto. Consulte a nossa 
+                    <a href="#">Política de Privacidade</a>.
+                </label>
             </div>
 
-            <button type="submit" class="button">ENVIAR</button>
+            <button type="submit" class="btn-enviar">ENVIAR</button>
         </form>
 
-        <div class="botao-contato">
-            <a href="tel:+351935358897" class="ligue-nos">📞 Ligue-nos Grátis</a>
-            <a href="https://wa.me/351935358897" class="liguem-me">📲 Liguem-me Grátis</a>
+        <div class="contact-buttons">
+            <button class="btn-ligar">📞 Ligue-nos Grátis</button>
+            <button class="btn-chamada">📲 Liguem-me Grátis</button>
+        </div>
+
+        <footer>
+            Endesa © Todos os direitos reservados.
+        </footer>
+    </div>
+
+    <!-- Lumin Vendedor -->
+    <div class="lumin-chat">
+        <div class="lumin-avatar">
+            <img src="https://via.placeholder.com/80" alt="Lumin Vendedor">
+        </div>
+        <div class="lumin-message">
+            <p>👋 Olá! Sou o Lumin, o seu assistente Endesa! Quer poupar na fatura e ganhar 70€ de oferta? 😃</p>
+            <button onclick="startChat()">💬 Fale comigo</button>
         </div>
     </div>
 
-    <div class="footer">
-        <p>Endesa © Todos os direitos reservados.</p>
-    </div>
+    <script src="script.js"></script>
+
 </body>
 </html>
