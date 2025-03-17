@@ -4,99 +4,66 @@ body {
     background-color: #f4f4f4;
 }
 
-.logo {
+header img {
     width: 200px;
-    margin-top: 20px;
+    margin: 20px auto;
+    display: block;
 }
 
 .container {
-    max-width: 600px;
-    margin: 20px auto;
+    max-width: 400px;
+    margin: auto;
     background: white;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.banner-oferta {
+.oferta {
     background: yellow;
     padding: 10px;
     font-size: 18px;
     font-weight: bold;
-    border-radius: 5px;
 }
 
-.box {
+.form-container {
+    background: #007bff;
     padding: 20px;
-    background: #007BFF;
+    border-radius: 10px;
     color: white;
-    border-radius: 8px;
-    margin: 20px 0;
 }
 
-form input, form button {
-    width: 100%;
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, button {
+    margin: 10px 0;
     padding: 10px;
-    margin: 8px 0;
     border-radius: 5px;
 }
 
 button {
-    background: #FF4081;
+    background: #ff4081;
     color: white;
     border: none;
     cursor: pointer;
-    font-size: 16px;
-    padding: 12px;
-    border-radius: 5px;
 }
 
-button:hover {
-    background: #D81B60;
-}
-
-.buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-.btn {
-    width: 48%;
-    padding: 12px;
-    border: none;
-    color: white;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.vermelho {
-    background: #D81B60;
-}
-
-.azul {
-    background: #007BFF;
-}
-
-/* Lumin Vendedor */
-#lumin-vendedor {
+#lumin-box {
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    left: 20px;
     background: white;
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
 }
 
-.avatar {
-    width: 60px;
-    height: 60px;
+#lumin-box img {
+    width: 50px;
+    height: 50px;
     margin-right: 10px;
-}
-
-.mensagem {
-    font-size: 14px;
 }
