@@ -1,80 +1,30 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f4f4f4;
-}
-
-.banner {
-    background-color: yellow;
-    padding: 10px;
-    font-size: 16px;
-}
-
-.container {
-    background: white;
-    padding: 20px;
+#simulador-container {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
     margin: 20px auto;
-    max-width: 400px;
-    border-radius: 10px;
+    text-align: center;
+    max-width: 300px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.logo {
-    width: 200px;
-}
-
-.form-container {
-    background: #007bff;
-    color: white;
-    padding: 15px;
-    border-radius: 8px;
-}
-
-.form-container label {
-    display: block;
-    margin-top: 10px;
-}
-
-input, button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: none;
+#simulador-container input {
+    width: 80%;
+    padding: 8px;
+    margin: 10px 0;
     border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
-button {
+#simulador-container button {
     background: #ff4081;
     color: white;
-    font-size: 18px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
 }
 
-button:hover {
+#simulador-container button:hover {
     background: #e0005a;
-}
-
-/* Lumin Vendedor */
-#lumin-container {
-    position: fixed;
-    bottom: 15px;
-    right: 15px;
-    display: flex;
-    align-items: center;
-    background: white;
-    padding: 10px;
-    border-radius: 15px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.lumin-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-#lumin-box {
-    font-size: 14px;
-    color: black;
 }
