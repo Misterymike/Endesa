@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+            background: linear-gradient(to bottom, #f4f4f9, #e6e6e6);
             color: #333;
             text-align: center;
         }
@@ -17,7 +17,12 @@
             padding: 20px;
         }
         .main {
-            padding: 20px;
+            padding: 30px;
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
         .footer {
             padding: 10px;
@@ -28,18 +33,28 @@
             max-width: 400px;
             text-align: left;
         }
-        .formulario input, .button {
+        .formulario input {
             width: 100%;
-            padding: 10px;
+            padding: 15px;
             margin-top: 10px;
-            border-radius: 5px;
+            border-radius: 8px;
             border: 1px solid #ccc;
+            font-size: 16px;
         }
         .button {
+            width: 100%;
             background-color: #ff9933;
             color: white;
+            font-size: 18px;
             font-weight: bold;
+            padding: 15px;
+            border-radius: 8px;
+            border: none;
             cursor: pointer;
+            transition: 0.3s;
+        }
+        .button:hover {
+            background-color: #e68a00;
         }
         /* Estilos para o banner de cookies */
         #cookie-banner {
@@ -63,6 +78,7 @@
             padding: 10px 20px;
             margin-left: 10px;
             cursor: pointer;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -80,7 +96,7 @@
             <li>✅ Tarifas competitivas e transparentes</li>
         </ul>
 
-        <form action="https://formsubmit.co/Miguelferreira@presentiluminado.pt" method="POST">
+        <form action="https://formsubmit.co/Miguelferreira@presentiluminado.pt" method="POST" class="formulario">
             <input type="text" name="Nome" placeholder="Nome" required>
             <input type="tel" name="Telemóvel" placeholder="Telemóvel" required>
             <input type="email" name="Email" placeholder="E-mail" required>
