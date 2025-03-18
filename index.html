@@ -77,43 +77,18 @@
             width: 80px;
         }
 
-        #chat-container {
+        #audio-btn {
             position: fixed;
-            bottom: 100px;
+            top: 20px;
             right: 20px;
-            width: 300px;
-            display: none;
-        }
-
-        #chat-box {
-            background: white;
             padding: 10px;
-            border-radius: 10px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        #chat-messages {
-            height: 200px;
-            overflow-y: auto;
-            padding: 5px;
-        }
-
-        #chat-input {
-            width: 80%;
-            padding: 5px;
-            border-radius: 5px;
-        }
-
-        #send-btn {
-            width: 18%;
-            padding: 5px;
             background: #007bff;
             color: white;
             border-radius: 5px;
             cursor: pointer;
         }
 
-        #send-btn:hover {
+        #audio-btn:hover {
             background: #0056b3;
         }
     </style>
@@ -158,83 +133,23 @@
         <a href="https://wa.me/351935358897" target="_blank">📲 Fale Connosco no WhatsApp</a>
     </div>
 
-    <div id="lumin-avatar" onclick="toggleChat()">
+    <div id="lumin-avatar" onclick="ativarVoz()">
         <img src="lumin_vendedor.png" alt="Lumin">
     </div>
 
-    <div id="chat-container">
-        <div id="chat-box">
-            <div id="chat-messages"></div>
-            <input type="text" id="chat-input" placeholder="Faça uma pergunta...">
-            <button id="send-btn">Enviar</button>
-        </div>
-    </div>
+    <button id="audio-btn" onclick="ativarVoz()">🔊 Ativar Narração</button>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let synthesis = window.speechSynthesis;
-            let chatBox = document.getElementById("chat-box");
-            let chatMessages = document.getElementById("chat-messages");
-            let chatInput = document.getElementById("chat-input");
-            let sendBtn = document.getElementById("send-btn");
+        let synthesis = window.speechSynthesis;
+        let mensagemInicial = "Olá! Seja bem-vindo! Sou o Lumin, o assistente virtual da Endesa. Simule aqui a sua poupança ou envie a sua fatura para garantir o melhor preço.";
 
-            function narrar(texto) {
-                if (!synthesis.speaking) {
-                    let msg = new SpeechSynthesisUtterance();
-                    msg.text = texto;
-                    msg.lang = "pt-PT";
-                    synthesis.speak(msg);
-                }
+        function ativarVoz() {
+            if (!synthesis.speaking) {
+                let msg = new SpeechSynthesisUtterance(mensagemInicial);
+                msg.lang = "pt-PT";
+                synthesis.speak(msg);
             }
-
-            function adicionarMensagem(texto, tipo) {
-                let mensagem = document.createElement("div");
-                mensagem.classList.add(tipo === "bot" ? "bot-message" : "user-message");
-                mensagem.innerText = texto;
-                chatMessages.appendChild(mensagem);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-
-                if (tipo === "bot") {
-                    narrar(texto);
-                }
-            }
-
-            sendBtn.addEventListener("click", function () {
-                let pergunta = chatInput.value.trim();
-                if (pergunta === "") return;
-
-                adicionarMensagem(pergunta, "user");
-                chatInput.value = "";
-
-                setTimeout(() => {
-                    let resposta = obterResposta(pergunta);
-                    adicionarMensagem(resposta, "bot");
-                }, 1000);
-            });
-
-            function obterResposta(pergunta) {
-                pergunta = pergunta.toLowerCase();
-
-                if (pergunta.includes("poupar") || pergunta.includes("reduzir fatura")) {
-                    return "Pode poupar até 30% mudando para a Endesa. Quer saber mais?";
-                } else if (pergunta.includes("adesão") || pergunta.includes("como aderir")) {
-                    return "Para aderir, basta enviar a sua fatura ou preencher os seus dados no formulário!";
-                } else if (pergunta.includes("desconto") || pergunta.includes("promoção")) {
-                    return "Atualmente temos um desconto de 70€ na sua primeira fatura!";
-                } else {
-                    return "Desculpe, não entendi a sua pergunta. Pode reformular?";
-                }
-            }
-
-            document.getElementById("lumin-avatar").addEventListener("click", function () {
-                chatBox.style.display = chatBox.style.display === "none" ? "block" : "none";
-            });
-
-            // Narração automática ao carregar a página
-            setTimeout(() => {
-                narrar("Olá! Seja bem-vindo! Sou o Lumin, o assistente virtual da Endesa. Simule aqui a sua poupança ou envie a sua fatura para garantir o melhor preço.");
-            }, 2000);
-        });
+        }
 
         function calcularPoupanca() {
             let valor = document.getElementById("valorFatura").value;
