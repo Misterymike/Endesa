@@ -3,63 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Endesa - Poupe na Sua Fatura</title>
+    <title>Endesa - Poupança Garantida</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <header>
         <img src="endesa.jpg" alt="Endesa" class="logo">
-        <div class="promo">🎉 <b>70€ de oferta</b> na sua primeira fatura ao aderir! 🎉</div>
     </header>
 
+    <div class="promo">🎉 <strong>70€ de oferta</strong> na sua primeira fatura ao aderir! 🎉</div>
+
     <main>
-        <section class="fatura-box">
+        <div class="fatura-box">
             <h2>📄 TEM A SUA FATURA À MÃO?</h2>
             <p>Faça aqui o upload da sua fatura e garanta o melhor preço.</p>
 
-            <form action="https://formsubmit.co/el/nupoke" method="POST" enctype="multipart/form-data">
-                <label>📌 Nome e Apelido</label>
-                <input type="text" name="name" placeholder="Nome e Apelido" required>
+            <label>📌 Nome e Apelido</label>
+            <input type="text" id="nome" placeholder="Nome e Apelido">
 
-                <label>📞 Telefone</label>
-                <input type="tel" name="phone" placeholder="Seu telefone" required>
+            <label>📞 Telefone</label>
+            <input type="tel" id="telefone" placeholder="Seu telefone">
 
-                <label>📎 Selecionar ou arrastar a fatura</label>
-                <input type="file" name="file" accept="image/*,application/pdf" required>
+            <label>📎 Selecionar ou arrastar a fatura</label>
+            <input type="file" id="fatura">
 
-                <input type="hidden" name="_next" value="https://obrigado.com"> <!-- Página de Obrigado -->
+            <input type="checkbox" id="autorizar"> Autorizo a Endesa a utilizar os meus dados para contacto.
 
-                <label>
-                    <input type="checkbox" required> Autorizo a Endesa a utilizar os meus dados para contacto.
-                </label>
+            <button id="enviar">ENVIAR</button>
+        </div>
 
-                <button type="submit">ENVIAR</button>
-            </form>
-        </section>
-
-        <section class="simulador">
+        <div class="simulador">
             <h2>💰 Simulador de Poupança</h2>
             <label>Valor médio da sua fatura (€):</label>
             <input type="number" id="valorFatura" value="100">
-            <button onclick="calcularPoupanca()">Calcular</button>
+            <button id="calcular">Calcular</button>
             <p id="resultado"></p>
-        </section>
-
-        <!-- Botão do WhatsApp -->
-        <a href="https://wa.me/351935358897" class="whatsapp-button">📲 Fale Connosco no WhatsApp</a>
-
-        <!-- Avatar do Lumin -->
-        <div id="lumin-avatar" onclick="toggleVoice()">
-            <img src="lumin_vendedor.png" alt="Lumin">
         </div>
-
-        <!-- Botão de Ativar/Desativar Narração -->
-        <button id="narracaoBotao" onclick="toggleNarracao()">🔊 Ativar Narração</button>
-
     </main>
 
-    <script src="script.js"></script>
+    <a id="whatsapp" href="https://wa.me/935358897" class="whatsapp-button">📲 Fale Connosco no WhatsApp</a>
 
+    <div id="lumin">
+        <img src="lumin_vendedor.png" alt="Lumin" id="lumin-avatar">
+        <button id="toggle-voice">🔊</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
