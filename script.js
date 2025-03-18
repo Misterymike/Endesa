@@ -1,32 +1,31 @@
 document.addEventListener("DOMContentLoaded", function() {
+    let narracaoAtiva = false;
+    let synth = window.speechSynthesis;
     let msg = new SpeechSynthesisUtterance();
-    msg.text = "Olá! Seja bem-vindo! Sou o Lumin, o assistente virtual da Endesa. Simule a sua poupança ou envie a sua fatura para garantir o melhor preço.";
-    msg.lang = "pt-PT";
 
-    // Espera 2 segundos antes de narrar automaticamente
-    setTimeout(() => {
-        if (!sessionStorage.getItem("narrated")) {
-            window.speechSynthesis.speak(msg);
-            sessionStorage.setItem("narrated", "true");
+    msg.text = "Olá! Seja bem-vindo! Sou o Lumin, o assistente virtual da Endesa. Simule aqui a sua poupança ou envie a sua fatura para garantir o melhor preço.";
+
+    function iniciarNarracao() {
+        if (!narracaoAtiva) {
+            synth.speak(msg);
+            narracaoAtiva = true;
         }
-    }, 2000);
-});
-
-// Função para ativar/desativar a narração
-function toggleVoice() {
-    if (window.speechSynthesis.speaking) {
-        window.speechSynthesis.cancel();
-    } else {
-        let msg = new SpeechSynthesisUtterance();
-        msg.text = "Olá! Seja bem-vindo! Sou o Lumin, o assistente virtual da Endesa. Simule a sua poupança ou envie a sua fatura para garantir o melhor preço.";
-        msg.lang = "pt-PT";
-        window.speechSynthesis.speak(msg);
     }
-}
 
-// Simulador de poupança
-function calcularPoupanca() {
-    let valorFatura = document.getElementById("valorFatura").value;
-    let poupanca = valorFatura * 0.3; // 30% de poupança
-    document.getElementById("resultado").innerHTML = `💡 Com a Endesa, pode poupar aproximadamente <b>${poupanca.toFixed(2)}€</b> na sua fatura!`;
-}
+    document.getElementById("narracaoBotao").addEventListener("click", function() {
+        iniciarNarracao();
+    });
+
+    function toggleVoice() {
+        iniciarNarracao();
+    }
+
+    window.calcularPoupanca = function() {
+        let valorFatura = document.getElementById("valorFatura").value;
+        let poupanca = valorFatura * 0.30;
+        document.getElementById("resultado").innerHTML = `💡 Com a Endesa, pode poupar aproximadamente <b>${poupanca.toFixed(2)}€</b> na sua fatura!`;
+
+        let resultadoMsg = new SpeechSynthesisUtterance(`Com a Endesa, pode poupar aproximadamente ${poupanca.toFixed(2)} euros na sua fatura.`);
+        synth.speak(resultadoMsg);
+    };
+});
