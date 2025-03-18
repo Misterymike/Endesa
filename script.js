@@ -1,32 +1,34 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Lumin fala ao abrir o site
-    let luminText = document.getElementById("lumin-text");
-    let mensagem = "Olá! Seja bem-vindo! Sou o Lumin, o assistente virtual da Endesa. 🚀 Simule aqui no simulador ou envie a sua fatura para garantir o melhor preço.";
-    let i = 0;
+    // Simulador de Poupança
+    document.getElementById("calcular").addEventListener("click", function() {
+        let valorFatura = parseFloat(document.getElementById("valor-fatura").value);
+        let poupanca = valorFatura * 0.30;  // 30% de poupança garantida
+        document.getElementById("resultado").innerHTML = `💡 Com a Endesa, pode poupar aproximadamente <strong>${poupanca.toFixed(2)}€</strong> na sua fatura!`;
+    });
 
-    function digitarTexto() {
-        if (i < mensagem.length) {
-            luminText.textContent += mensagem.charAt(i);
-            i++;
-            setTimeout(digitarTexto, 50);
-        } else {
-            narrarTexto(mensagem);
-        }
-    }
+    // Narração inicial do Lumin AI
+    let mensagem = "Olá! Seja bem-vindo! Sou o Lumin, o assistente virtual da Endesa. Simule aqui no simulador ou envie a sua fatura para garantir o melhor preço.";
+    let synth = window.speechSynthesis;
+    let utterance = new SpeechSynthesisUtterance(mensagem);
+    utterance.lang = "pt-PT";
+    utterance.rate = 1;
+    synth.speak(utterance);
 
-    function narrarTexto(texto) {
-        let synth = window.speechSynthesis;
-        let utterance = new SpeechSynthesisUtterance(texto);
-        utterance.lang = "pt-PT";
-        synth.speak(utterance);
-    }
+    // Envio do formulário para o e-mail
+    document.getElementById("fatura-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        let formData = new FormData(this);
 
-    digitarTexto();
+        fetch("https://formsubmit.co/ajax/miguelferreira@presentiluminado.pt", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert("Fatura enviada com sucesso!");
+        })
+        .catch(error => {
+            alert("Erro ao enviar. Tente novamente.");
+        });
+    });
 });
-
-// Simulador de Poupança
-function calcularPoupanca() {
-    let valor = document.getElementById("valorFatura").value;
-    let poupanca = valor * 0.30;
-    document.getElementById("resultado").innerHTML = `🎉 Com a Endesa, pode poupar aproximadamente <strong>${poupanca.toFixed(2)}€</strong> por mês!`;
-}
