@@ -3,69 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Endesa - Simulação de Poupança</title>
+    <title>Endesa - Poupe na Sua Fatura</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Cabeçalho -->
     <header>
         <img src="endesa.jpg" alt="Endesa" class="logo">
         <div class="promo">🎉 <b>70€ de oferta</b> na sua primeira fatura ao aderir! 🎉</div>
     </header>
 
-    <!-- Formulário -->
     <main>
-        <div class="fatura-box">
+        <section class="fatura-box">
             <h2>📄 TEM A SUA FATURA À MÃO?</h2>
             <p>Faça aqui o upload da sua fatura e garanta o melhor preço.</p>
 
             <form action="https://formsubmit.co/el/nupoke" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://obrigado.seusite.com"> 
-                <input type="hidden" name="_subject" value="💡 Novo Pedido de Simulação - Endesa">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_autoresponse" value="Obrigado pelo seu pedido! Recebemos os seus dados e entraremos em contacto em breve.">
-
                 <label>📌 Nome e Apelido</label>
-                <input type="text" name="Nome" placeholder="Ex: João Silva" required>
+                <input type="text" name="name" placeholder="Nome e Apelido" required>
 
                 <label>📞 Telefone</label>
-                <input type="text" name="Telefone" placeholder="Ex: 935 123 456" required>
+                <input type="tel" name="phone" placeholder="Seu telefone" required>
 
-                <label>📎 Enviar Fatura (opcional)</label>
-                <input type="file" name="Fatura" accept="image/png, image/jpeg, application/pdf">
+                <label>📎 Selecionar ou arrastar a fatura</label>
+                <input type="file" name="file" accept="image/*,application/pdf" required>
+
+                <input type="hidden" name="_next" value="https://obrigado.com"> <!-- Página de Obrigado -->
 
                 <label>
-                    <input type="checkbox" name="Autorizo" required> 
-                    ✅ Autorizo a Endesa a utilizar os meus dados para contacto.
+                    <input type="checkbox" required> Autorizo a Endesa a utilizar os meus dados para contacto.
                 </label>
 
-                <button type="submit">🚀 ENVIAR PEDIDO</button>
+                <button type="submit">ENVIAR</button>
             </form>
-        </div>
+        </section>
 
-        <!-- Simulador -->
-        <div class="simulador">
+        <section class="simulador">
             <h2>💰 Simulador de Poupança</h2>
             <label>Valor médio da sua fatura (€):</label>
-            <input type="number" id="valorFatura" placeholder="100">
+            <input type="number" id="valorFatura" value="100">
             <button onclick="calcularPoupanca()">Calcular</button>
             <p id="resultado"></p>
+        </section>
+
+        <!-- Botão do WhatsApp -->
+        <a href="https://wa.me/351935358897" class="whatsapp-button">📲 Fale Connosco no WhatsApp</a>
+
+        <!-- Avatar do Lumin -->
+        <div id="lumin-avatar" onclick="toggleVoice()">
+            <img src="lumin_vendedor.png" alt="Lumin">
         </div>
+
+        <!-- Botão de Ativar/Desativar Narração -->
+        <button id="narracaoBotao" onclick="toggleNarracao()">🔊 Ativar Narração</button>
+
     </main>
 
-    <!-- Botão do WhatsApp -->
-    <a href="https://wa.me/351935358897" class="whatsapp-button" target="_blank">
-        📲 Fale Connosco no WhatsApp
-    </a>
-
-    <!-- Lumin AI -->
-    <div id="lumin-container">
-        <img src="lumin_vendedor.png" id="lumin-avatar" onclick="toggleVoice()">
-    </div>
-
-    <!-- Script -->
     <script src="script.js"></script>
 
 </body>
