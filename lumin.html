@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumin AI - Assistente Virtual</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+        }
+
+        .chat-container {
+            width: 90%;
+            max-width: 400px;
+            margin: 20px auto;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .chat-box {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: #f9f9f9;
+        }
+
+        .chat-input {
+            width: 80%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .chat-button {
+            width: 18%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .chat-button:hover {
+            background: #0056b3;
+        }
+
+        .bot-message {
+            background: #d4edda;
+            padding: 8px;
+            border-radius: 5px;
+            margin: 5px 0;
+            text-align: left;
+        }
+
+        .user-message {
+            background: #cce5ff;
+            padding: 8px;
+            border-radius: 5px;
+            margin: 5px 0;
+            text-align: right;
+        }
+
+        .whatsapp-button {
+            display: block;
+            background: green;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 20px auto;
+            width: 90%;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>Lumin AI - Assistente Virtual</header>
+
+    <div class="chat-container">
+        <h2>💬 Fale com o Lumin</h2>
+        <div class="chat-box" id="chat-box"></div>
+        <input type="text" class="chat-input" id="chat-input" placeholder="Digite sua pergunta...">
+        <button class="chat-button" id="send-btn">Enviar</button>
+    </div>
+
+    <a href="https://wa.me/351935358897" class="whatsapp-button">📲 Fale Connosco no WhatsApp</a>
+
+    <script>
+        let synthesis = window.speechSynthesis;
+
+        function falar(texto) {
+            synthesis.cancel(); // Cancela qualquer fala anterior
+            let msg = new SpeechSynthesisUtterance(texto);
+            msg.lang = "pt-PT";
+            synthesis.speak(msg);
+        }
+
+        function adicionarMensagem(texto, tipo) {
+            let chatBox = document.getElementById("chat-box");
+            let mensagem = document.createElement("div");
+            mensagem.classList.add(tipo === "bot" ? "bot-message" : "user-message");
+            mensagem.innerText = texto;
+            chatBox.appendChild(mensagem);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            if (tipo === "bot") {
+                falar(texto);
+            }
+        }
+
+        document.getElementById("send-btn").addEventListener("click", function () {
+            let chatInput = document.getElementById("chat-input");
+            let pergunta = chatInput.value.trim();
+            if (pergunta === "") return;
+
+            adicionarMensagem("Você: " + pergunta, "user");
+
+            setTimeout(() => {
+                let resposta = gerarResposta(pergunta);
+                adicionarMensagem("Lumin: " + resposta, "bot");
+            }, 1000);
+
+            chatInput.value = "";
+        });
+
+        function gerarResposta(pergunta) {
+            pergunta = pergunta.toLowerCase();
+
+            if (pergunta.includes("poupar") || pergunta.includes("reduzir fatura")) {
+                return "Pode poupar até 30% mudando para a Endesa. Quer saber mais?";
+            } else if (pergunta.includes("adesão") || pergunta.includes("como aderir")) {
+                return "Para aderir, basta enviar a sua fatura ou preencher os seus dados no formulário!";
+            } else if (pergunta.includes("desconto") || pergunta.includes("promoção")) {
+                return "Atualmente temos um desconto de 70€ na sua primeira fatura!";
+            } else if (pergunta.includes("falar com humano")) {
+                return "Pode falar com um dos nossos especialistas no WhatsApp!";
+            } else {
+                return "Desculpe, não entendi a sua pergunta. Pode reformular?";
+            }
+        }
+    </script>
+</body>
+</html>
