@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function falarMensagem(texto) {
         if (speechSynthesis.speaking) {
-            speechSynthesis.cancel(); // Para a fala anterior antes de iniciar uma nova
+            speechSynthesis.cancel();
         }
         let msg = new SpeechSynthesisUtterance();
         msg.text = texto;
@@ -22,34 +22,31 @@ document.addEventListener("DOMContentLoaded", function() {
         if (audioAtivado) {
             botaoAudio.innerText = "❌ Desativar Lumin";
             falarMensagem("Olá! Sou o Lumin, o assistente virtual da Endesa. Simule a sua poupança ou envie a sua fatura.");
+            
+            // Narração automática a cada 20 segundos se ativado
+            setInterval(() => {
+                if (audioAtivado) {
+                    falarMensagem("Precisa de ajuda? Pode simular a poupança ou enviar a sua fatura.");
+                }
+            }, 20000);
+
         } else {
             botaoAudio.innerText = "🔊 Ativar Lumin";
-            speechSynthesis.cancel(); // Para qualquer fala ativa
+            speechSynthesis.cancel();
         }
     });
 
-    // O Lumin fala ao ser clicado (se o áudio estiver ativado)
+    // O Lumin fala ao ser clicado se o áudio estiver ativado
     luminAvatar.addEventListener("click", function() {
         if (audioAtivado) {
-            falarMensagem("Posso ajudar com alguma dúvida? Pode simular a sua poupança ou enviar a sua fatura.");
+            falarMensagem("Posso ajudar? Simule a poupança ou envie a sua fatura.");
         }
     });
 
-    // Narração automática ao entrar no site (se o utilizador ativar o áudio)
+    // Garantir que o Lumin fala ao ativar a narração
     setTimeout(() => {
         if (audioAtivado) {
             falarMensagem("Bem-vindo à Endesa! Vamos poupar na sua fatura? Simule agora ou envie a sua fatura.");
         }
-    }, 2000);
+    }, 3000);
 });
-
-function calcularPoupanca() {
-    let valorFatura = document.getElementById("valorFatura").value;
-    let poupanca = valorFatura * 0.30; // 30% de desconto
-    document.getElementById("resultadoPoupanca").innerHTML = `💡 Com a Endesa, pode poupar aproximadamente <b>${poupanca.toFixed(2)}€</b> na fatura!`;
-
-    // O Lumin responde dinamicamente após o cálculo (se o áudio estiver ativado)
-    if (audioAtivado) {
-        falarMensagem(`Se mudar para a Endesa, pode poupar cerca de ${poupanca.toFixed(2)} euros na sua fatura.`);
-    }
-}
