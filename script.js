@@ -1,25 +1,34 @@
 document.addEventListener("DOMContentLoaded", function() {
     let synthesis = window.speechSynthesis;
     let voiceToggle = document.getElementById("toggle-voice");
+    let isSpeaking = false;
 
     function narrar(texto) {
-        let msg = new SpeechSynthesisUtterance();
-        msg.text = texto;
-        msg.lang = "pt-PT";
-        synthesis.speak(msg);
+        if (!synthesis.speaking) {
+            let msg = new SpeechSynthesisUtterance();
+            msg.text = texto;
+            msg.lang = "pt-PT";
+            msg.rate = 1; // Velocidade normal
+            msg.pitch = 1; // Tom neutro
+            synthesis.speak(msg);
+        }
     }
 
-    // Mensagem de boas-vindas
+    // Iniciar narração automática ao carregar a página
     setTimeout(() => {
         narrar("Olá! Seja bem-vindo! Sou o Lumin, o assistente virtual da Endesa. Simule a sua poupança ou envie a sua fatura para garantir o melhor preço.");
-    }, 2000);
+    }, 1500);
 
-    // Ativar/desativar narração
+    // Ativar/desativar narração pelo botão
     voiceToggle.addEventListener("click", function() {
-        if (synthesis.speaking) {
+        if (isSpeaking) {
             synthesis.cancel();
+            isSpeaking = false;
+            voiceToggle.innerText = "🔊"; // Ícone som desligado
         } else {
             narrar("Olá! Sou o Lumin, pronto para ajudar.");
+            isSpeaking = true;
+            voiceToggle.innerText = "🔇"; // Ícone som ligado
         }
     });
 
@@ -27,8 +36,9 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("calcular").addEventListener("click", function() {
         let valor = parseFloat(document.getElementById("valorFatura").value);
         let poupanca = (valor * 0.3).toFixed(2);
-        document.getElementById("resultado").innerText = `💡 Com a Endesa, pode poupar aproximadamente ${poupanca}€ na sua fatura!`;
-        narrar(`Com a Endesa, pode poupar aproximadamente ${poupanca} euros na sua fatura.`);
+        let resultadoTexto = `💡 Com a Endesa, pode poupar aproximadamente ${poupanca}€ na sua fatura!`;
+        document.getElementById("resultado").innerText = resultadoTexto;
+        narrar(resultadoTexto);
     });
 
     // Enviar formulário
@@ -39,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (nome === "" || telefone === "" || !autorizar) {
             alert("Por favor, preencha os campos obrigatórios e aceite os termos.");
+            narrar("Por favor, preencha os campos obrigatórios e aceite os termos.");
             return;
         }
 
@@ -55,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert("O seu pedido foi enviado com sucesso!");
             } else {
                 alert("Houve um erro ao enviar o formulário. Tente novamente.");
+                narrar("Houve um erro ao enviar o formulário. Tente novamente.");
             }
         });
     });
