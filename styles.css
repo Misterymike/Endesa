@@ -1,24 +1,18 @@
-/* Estilo geral do corpo */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
 }
 
-/* Cabeçalho */
 header {
     background-color: white;
     padding: 10px;
 }
 
-/* Logo */
 .logo {
     width: 150px;
 }
 
-/* Promoção de 70€ */
 .promo {
     background: yellow;
     padding: 10px;
@@ -26,23 +20,18 @@ header {
     font-weight: bold;
 }
 
-/* Conteúdo principal */
 main {
     padding: 20px;
 }
 
-/* Caixa de formulário e simulador */
-.fatura-box, .simulador {
+.fatura-box, .simulador-box {
     background: #007bff;
     color: white;
     padding: 20px;
     border-radius: 10px;
-    margin: 20px auto;
-    max-width: 400px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px;
 }
 
-/* Inputs e botões */
 input, button {
     display: block;
     width: 90%;
@@ -59,29 +48,35 @@ button {
     cursor: pointer;
 }
 
-button:focus {
-    outline: none;
+.whatsapp-button {
+    display: block;
+    width: 90%;
+    margin: 20px auto;
+    padding: 10px;
+    background: green;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 5px;
 }
 
-/* Caixa do Lumin */
 #lumin-box {
     position: fixed;
     bottom: 20px;
     right: 20px;
     width: 250px;
-    background: rgba(255, 255, 255, 0.9); /* Transparência */
+    background: rgba(255, 255, 255, 0.9);
     padding: 10px;
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Avatar do Lumin */
 #lumin-avatar {
     width: 50px;
     display: inline-block;
 }
 
-/* Texto do Lumin */
 #lumin-text {
     display: inline-block;
     font-size: 14px;
