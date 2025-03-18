@@ -1,21 +1,37 @@
 document.addEventListener("DOMContentLoaded", function() {
-    iniciarNarracao();
+    verificarPermissaoFala();
 });
+
+// Verifica se o navegador suporta fala
+function verificarPermissaoFala() {
+    if ('speechSynthesis' in window) {
+        // Adiciona um pequeno delay para garantir que a voz está pronta
+        setTimeout(iniciarNarracao, 2000);
+    } else {
+        console.warn("O seu navegador não suporta síntese de voz.");
+    }
+}
 
 // Função para iniciar a narração do Lumin
 function iniciarNarracao() {
-    let mensagem = [
+    let mensagens = [
         "Olá! Seja bem-vindo! Sou o Lumin, o assistente virtual da Endesa.",
         "Estou aqui para o ajudar a poupar na sua fatura de energia.",
-        "Pode utilizar o simulador para calcular quanto pode poupar.",
-        "Ou então, basta enviar a sua fatura e encontraremos o melhor plano para si.",
+        "Utilize o simulador abaixo para calcular a sua poupança.",
+        "Ou então, envie a sua fatura e encontramos o melhor plano para si!",
         "Se precisar de ajuda, fale comigo no WhatsApp!"
     ];
 
+    falarMensagens(mensagens);
+}
+
+// Função para narrar mensagens em sequência
+function falarMensagens(mensagens) {
     let i = 0;
+    
     function narrarTexto() {
-        if (i < mensagem.length) {
-            let msg = new SpeechSynthesisUtterance(mensagem[i]);
+        if (i < mensagens.length) {
+            let msg = new SpeechSynthesisUtterance(mensagens[i]);
             msg.lang = "pt-PT";
             msg.rate = 1;
             msg.onend = function() {
@@ -29,7 +45,7 @@ function iniciarNarracao() {
     narrarTexto();
 }
 
-// Simulador de Poupança
+// Função para calcular a poupança
 function calcularPoupanca() {
     let valor = document.getElementById("valorFatura").value;
     let poupanca = (valor * 0.30).toFixed(2);
@@ -38,9 +54,7 @@ function calcularPoupanca() {
     document.getElementById("resultado").innerHTML = mensagemPoupanca;
 
     // Lumin responde dinamicamente após o cálculo
-    let msg = new SpeechSynthesisUtterance(`Se mudar para a Endesa, pode poupar cerca de ${poupanca} euros na sua fatura!`);
-    msg.lang = "pt-PT";
-    speechSynthesis.speak(msg);
+    falarMensagens([`Se mudar para a Endesa, pode poupar cerca de ${poupanca} euros na sua fatura!`]);
 }
 
 // Envio de formulário
@@ -56,9 +70,7 @@ document.getElementById("formulario").addEventListener("submit", function(event)
     }).then(response => {
         if (response.ok) {
             alert(`Obrigado, ${nome}! Em breve entraremos em contacto.`);
-            let msg = new SpeechSynthesisUtterance(`Obrigado, ${nome}! Em breve entraremos em contacto.`);
-            msg.lang = "pt-PT";
-            speechSynthesis.speak(msg);
+            falarMensagens([`Obrigado, ${nome}! Em breve entraremos em contacto.`]);
             this.reset();
         } else {
             alert("Erro ao enviar. Tente novamente.");
