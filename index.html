@@ -49,16 +49,19 @@
 
     <a href="https://wa.me/351935358897" class="whatsapp-button">📲 Fale Connosco no WhatsApp</a>
 
+    <!-- Avatar do Lumin -->
     <div id="lumin-avatar" onclick="toggleChatbot()">
         <img src="lumin_vendedor.png" alt="Lumin AI">
     </div>
 
-    <div id="lumin-chat" class="hidden">
+    <!-- Chatbot do Lumin -->
+    <div id="lumin-chat">
         <div id="chat-box"></div>
-        <input type="text" id="user-input" placeholder="Escreva a sua pergunta...">
+        <input type="text" id="user-input" placeholder="Pergunte algo...">
         <button onclick="enviarPergunta()">Enviar</button>
     </div>
 
+    <!-- Botão de áudio -->
     <button id="audio-toggle" onclick="toggleVoice()">🔊 Ativar Narração</button>
 
     <script src="script.js"></script>
