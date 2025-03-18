@@ -4,4 +4,9 @@
     left: 20px;
     background: #007bff;
     color: white;
-    border: none
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
