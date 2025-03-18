@@ -8,12 +8,19 @@ document.addEventListener("DOMContentLoaded", function() {
         speechSynthesis.speak(msg);
     }
 
-    // Aguardar 1 segundo para evitar bloqueios de autoplay
-    setTimeout(() => {
-        falarMensagem("Olá! Seja bem-vindo! Sou o Lumin, o assistente virtual da Endesa. Simule a sua poupança ou envie a sua fatura para garantir o melhor preço.");
-    }, 1000);
+    // Criar um botão invisível para ativar o áudio no primeiro clique
+    let botaoAtivarAudio = document.createElement("button");
+    botaoAtivarAudio.innerText = "Ativar Áudio";
+    botaoAtivarAudio.style.position = "absolute";
+    botaoAtivarAudio.style.top = "-9999px";
+    document.body.appendChild(botaoAtivarAudio);
 
-    // Adicionar um evento ao clicar no avatar do Lumin
+    botaoAtivarAudio.addEventListener("click", function() {
+        falarMensagem("Olá! Seja bem-vindo! Sou o Lumin, o assistente virtual da Endesa. Simule a sua poupança ou envie a sua fatura para garantir o melhor preço.");
+        botaoAtivarAudio.remove(); // Remove o botão após o primeiro clique
+    });
+
+    // Ativar o áudio ao clicar no avatar do Lumin
     document.getElementById("lumin-avatar").addEventListener("click", function() {
         falarMensagem("Posso ajudar com alguma dúvida? Pode simular a sua poupança ou enviar a sua fatura.");
     });
