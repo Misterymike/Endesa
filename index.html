@@ -37,14 +37,53 @@
         </div>
 
         <!-- Botão para ativar/desativar narração -->
-        <button id="audio-toggle" onclick="toggleAudio()">🔊 Ativar Narração</button>
+        <button id="audio-toggle">🔊 Ativar Narração</button>
 
     </main>
 
     <!-- Botão do WhatsApp -->
     <a href="https://wa.me/935358897" class="whatsapp-button">💬 Fale Connosco no WhatsApp</a>
 
-    <script src="script.js"></script>
+    <script>
+        // Função para calcular poupança
+        function calcularPoupanca() {
+            let valor = document.getElementById("valorFatura").value;
+            let poupanca = (valor * 0.30).toFixed(2);
+            document.getElementById("poupancaValor").innerText = poupanca + "€";
+        }
+
+        // Narração Automática com Botão de Ativar/Desativar
+        document.addEventListener("DOMContentLoaded", function () {
+            const speech = new SpeechSynthesisUtterance();
+            speech.lang = "pt-PT"; 
+            speech.rate = 1; 
+            speech.pitch = 1; 
+            speech.volume = 1; 
+
+            speech.text = "Olá! Seja bem-vindo! Eu sou o Lumin, o assistente virtual. Simule a sua poupança ou envie a sua fatura para garantir o melhor preço!";
+
+            // Aguarda 2 segundos antes de iniciar a narração
+            setTimeout(() => {
+                window.speechSynthesis.speak(speech);
+            }, 2000);
+
+            // Botão de ativar e desativar a narração
+            const audioButton = document.getElementById("audio-toggle");
+            let isSpeaking = false;
+            audioButton.addEventListener("click", function () {
+                if (!isSpeaking) {
+                    window.speechSynthesis.speak(speech);
+                    isSpeaking = true;
+                    audioButton.innerText = "🔇 Desativar Narração";
+                } else {
+                    window.speechSynthesis.cancel();
+                    isSpeaking = false;
+                    audioButton.innerText = "🔊 Ativar Narração";
+                }
+            });
+        });
+
+    </script>
 
 </body>
 </html>
