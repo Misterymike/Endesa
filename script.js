@@ -1,47 +1,55 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     let synthesis = window.speechSynthesis;
-    let chatBox = document.getElementById("chat-box");
-    let chatMessages = document.getElementById("chat-messages");
-    let chatInput = document.getElementById("chat-input");
-    let sendBtn = document.getElementById("send-btn");
+    let audioEnabled = false;
 
-    function narrar(texto) {
-        if (!synthesis.speaking) {
-            let msg = new SpeechSynthesisUtterance();
-            msg.text = texto;
+    function falar(texto) {
+        if (audioEnabled) {
+            let msg = new SpeechSynthesisUtterance(texto);
             msg.lang = "pt-PT";
             synthesis.speak(msg);
         }
     }
 
-    function adicionarMensagem(texto, tipo) {
-        let mensagem = document.createElement("div");
-        mensagem.classList.add(tipo === "bot" ? "bot-message" : "user-message");
-        mensagem.innerText = texto;
-        chatMessages.appendChild(mensagem);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-
-        if (tipo === "bot") {
-            narrar(texto);
+    function toggleVoice() {
+        audioEnabled = !audioEnabled;
+        let button = document.getElementById("audio-toggle");
+        button.innerText = audioEnabled ? "🔇 Desativar Narração" : "🔊 Ativar Narração";
+        if (audioEnabled) {
+            falar("Olá! Seja bem-vindo! Sou o Lumin, o assistente virtual da Endesa. Simule aqui a sua poupança ou envie a sua fatura para garantir o melhor preço.");
         }
     }
 
-    sendBtn.addEventListener("click", function () {
-        let pergunta = chatInput.value.trim();
-        if (pergunta === "") return;
+    function toggleChatbot() {
+        let chat = document.getElementById("lumin-chat");
+        chat.classList.toggle("hidden");
+    }
 
-        adicionarMensagem(pergunta, "user");
-        chatInput.value = "";
+    function enviarPergunta() {
+        let input = document.getElementById("user-input").value.trim();
+        if (input === "") return;
+
+        adicionarMensagem("Você: " + input, "user");
 
         setTimeout(() => {
-            let resposta = obterResposta(pergunta);
-            adicionarMensagem(resposta, "bot");
+            let resposta = gerarResposta(input);
+            adicionarMensagem("Lumin: " + resposta, "bot");
+            falar(resposta);
         }, 1000);
-    });
 
-    function obterResposta(pergunta) {
+        document.getElementById("user-input").value = "";
+    }
+
+    function adicionarMensagem(texto, tipo) {
+        let chatBox = document.getElementById("chat-box");
+        let mensagem = document.createElement("div");
+        mensagem.classList.add(tipo === "bot" ? "bot-message" : "user-message");
+        mensagem.innerText = texto;
+        chatBox.appendChild(mensagem);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function gerarResposta(pergunta) {
         pergunta = pergunta.toLowerCase();
-
         if (pergunta.includes("poupar") || pergunta.includes("reduzir fatura")) {
             return "Pode poupar até 30% mudando para a Endesa. Quer saber mais?";
         } else if (pergunta.includes("adesão") || pergunta.includes("como aderir")) {
@@ -53,13 +61,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    document.getElementById("lumin-avatar").addEventListener("click", function () {
-        chatBox.style.display = chatBox.style.display === "none" ? "block" : "none";
-    });
+    window.calcularPoupanca = function() {
+        let valor = document.getElementById("valor-fatura").value;
+        let poupanca = valor * 0.30;
+        document.getElementById("resultado").innerText = `💡 Com a Endesa, pode poupar aproximadamente ${poupanca.toFixed(2)}€ na sua fatura!`;
+        falar(`Com a Endesa, pode poupar aproximadamente ${poupanca.toFixed(2)} euros na sua fatura!`);
+    }
 });
-
-function calcularPoupanca() {
-    let valor = document.getElementById("valorFatura").value;
-    let poupanca = valor * 0.30;
-    document.getElementById("resultado").innerText = `💡 Pode poupar aproximadamente ${poupanca.toFixed(2)}€ na sua fatura!`;
-}
