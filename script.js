@@ -1,78 +1,65 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     let synthesis = window.speechSynthesis;
-    let voiceToggle = document.getElementById("toggle-voice");
-    let isSpeaking = false;
+    let chatBox = document.getElementById("chat-box");
+    let chatMessages = document.getElementById("chat-messages");
+    let chatInput = document.getElementById("chat-input");
+    let sendBtn = document.getElementById("send-btn");
 
     function narrar(texto) {
         if (!synthesis.speaking) {
             let msg = new SpeechSynthesisUtterance();
             msg.text = texto;
             msg.lang = "pt-PT";
-            msg.rate = 1; // Velocidade normal
-            msg.pitch = 1; // Tom neutro
             synthesis.speak(msg);
         }
     }
 
-    // Iniciar narração automática ao carregar a página
-    setTimeout(() => {
-        narrar("Olá! Seja bem-vindo! Sou o Lumin, o assistente virtual da Endesa. Simule a sua poupança ou envie a sua fatura para garantir o melhor preço.");
-    }, 1500);
+    function adicionarMensagem(texto, tipo) {
+        let mensagem = document.createElement("div");
+        mensagem.classList.add(tipo === "bot" ? "bot-message" : "user-message");
+        mensagem.innerText = texto;
+        chatMessages.appendChild(mensagem);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
 
-    // Ativar/desativar narração pelo botão
-    voiceToggle.addEventListener("click", function() {
-        if (isSpeaking) {
-            synthesis.cancel();
-            isSpeaking = false;
-            voiceToggle.innerText = "🔊"; // Ícone som desligado
+        if (tipo === "bot") {
+            narrar(texto);
+        }
+    }
+
+    sendBtn.addEventListener("click", function () {
+        let pergunta = chatInput.value.trim();
+        if (pergunta === "") return;
+
+        adicionarMensagem(pergunta, "user");
+        chatInput.value = "";
+
+        setTimeout(() => {
+            let resposta = obterResposta(pergunta);
+            adicionarMensagem(resposta, "bot");
+        }, 1000);
+    });
+
+    function obterResposta(pergunta) {
+        pergunta = pergunta.toLowerCase();
+
+        if (pergunta.includes("poupar") || pergunta.includes("reduzir fatura")) {
+            return "Pode poupar até 30% mudando para a Endesa. Quer saber mais?";
+        } else if (pergunta.includes("adesão") || pergunta.includes("como aderir")) {
+            return "Para aderir, basta enviar a sua fatura ou preencher os seus dados no formulário!";
+        } else if (pergunta.includes("desconto") || pergunta.includes("promoção")) {
+            return "Atualmente temos um desconto de 70€ na sua primeira fatura!";
         } else {
-            narrar("Olá! Sou o Lumin, pronto para ajudar.");
-            isSpeaking = true;
-            voiceToggle.innerText = "🔇"; // Ícone som ligado
+            return "Desculpe, não entendi a sua pergunta. Pode reformular?";
         }
-    });
+    }
 
-    // Simulador de Poupança
-    document.getElementById("calcular").addEventListener("click", function() {
-        let valor = parseFloat(document.getElementById("valorFatura").value);
-        let poupanca = (valor * 0.3).toFixed(2);
-        let resultadoTexto = `💡 Com a Endesa, pode poupar aproximadamente ${poupanca}€ na sua fatura!`;
-        document.getElementById("resultado").innerText = resultadoTexto;
-        narrar(resultadoTexto);
-    });
-
-    // Enviar formulário
-    document.getElementById("enviar").addEventListener("click", function() {
-        let nome = document.getElementById("nome").value;
-        let telefone = document.getElementById("telefone").value;
-        let autorizar = document.getElementById("autorizar").checked;
-
-        if (nome === "" || telefone === "" || !autorizar) {
-            alert("Por favor, preencha os campos obrigatórios e aceite os termos.");
-            narrar("Por favor, preencha os campos obrigatórios e aceite os termos.");
-            return;
-        }
-
-        let formData = new FormData();
-        formData.append("name", nome);
-        formData.append("phone", telefone);
-
-        fetch("https://formsubmit.co/miguelferreira@presentiluminado.pt", {
-            method: "POST",
-            body: formData
-        }).then(response => {
-            if (response.ok) {
-                narrar("Obrigado! O seu pedido foi enviado com sucesso.");
-                alert("O seu pedido foi enviado com sucesso!");
-            } else {
-                alert("Houve um erro ao enviar o formulário. Tente novamente.");
-                narrar("Houve um erro ao enviar o formulário. Tente novamente.");
-            }
-        });
-    });
-
-    // WhatsApp Redirecionamento
-    document.getElementById("whatsapp").addEventListener("click", function() {
-        narrar("Abrindo o WhatsApp para falar connosco.");
+    document.getElementById("lumin-avatar").addEventListener("click", function () {
+        chatBox.style.display = chatBox.style.display === "none" ? "block" : "none";
     });
 });
+
+function calcularPoupanca() {
+    let valor = document.getElementById("valorFatura").value;
+    let poupanca = valor * 0.30;
+    document.getElementById("resultado").innerText = `💡 Pode poupar aproximadamente ${poupanca.toFixed(2)}€ na sua fatura!`;
+}
