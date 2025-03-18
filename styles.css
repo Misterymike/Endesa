@@ -10,7 +10,7 @@ header {
 }
 
 .logo {
-    width: 180px;
+    width: 150px;
 }
 
 .promo {
@@ -48,26 +48,26 @@ button {
     cursor: pointer;
 }
 
-#whatsapp-button {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
+.whatsapp-button {
+    display: block;
+    text-align: center;
     background: green;
     color: white;
-    padding: 10px 15px;
-    border-radius: 30px;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
     text-decoration: none;
-    font-weight: bold;
+    margin: 20px auto;
+    width: 80%;
 }
 
-#lumin-box {
+#lumin {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 70px;
 }
 
 #lumin-avatar {
-    width: 70px;
+    width: 80px;
     cursor: pointer;
 }
