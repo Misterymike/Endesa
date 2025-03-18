@@ -10,7 +10,7 @@ header {
 }
 
 .logo {
-    width: 150px;
+    width: 180px;
 }
 
 .promo {
@@ -20,7 +20,11 @@ header {
     font-weight: bold;
 }
 
-.fatura-box, .simulador-box {
+main {
+    padding: 20px;
+}
+
+.fatura-box, .simulador {
     background: #007bff;
     color: white;
     padding: 20px;
@@ -44,32 +48,26 @@ button {
     cursor: pointer;
 }
 
-/* LUMIN AI */
-#lumin-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 80px;
-    height: 80px;
-    background: none;
-    cursor: pointer;
-}
-
-#lumin-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-}
-
-/* Botão WhatsApp */
-.whatsapp-button {
+#whatsapp-button {
     position: fixed;
     bottom: 20px;
     left: 20px;
     background: green;
     color: white;
     padding: 10px 15px;
-    border-radius: 5px;
+    border-radius: 30px;
     text-decoration: none;
-    font-size: 16px;
+    font-weight: bold;
+}
+
+#lumin-box {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 70px;
+}
+
+#lumin-avatar {
+    width: 70px;
+    cursor: pointer;
 }
