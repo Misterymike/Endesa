@@ -144,9 +144,11 @@
         let mensagemInicial = "Olá! Seja bem-vindo! Sou o Lumin, o assistente virtual da Endesa. Simule aqui a sua poupança ou envie a sua fatura para garantir o melhor preço.";
 
         function ativarVoz() {
-            if (!synthesis.speaking) {
+            if (!synthesis.speaking && !synthesis.pending) {
                 let msg = new SpeechSynthesisUtterance(mensagemInicial);
                 msg.lang = "pt-PT";
+                msg.rate = 1;  // Velocidade normal
+                msg.pitch = 1; // Tom normal
                 synthesis.speak(msg);
             }
         }
@@ -155,7 +157,23 @@
             let valor = document.getElementById("valorFatura").value;
             let poupanca = valor * 0.30;
             document.getElementById("resultado").innerText = `💡 Pode poupar aproximadamente ${poupanca.toFixed(2)}€ na sua fatura!`;
+
+            // Lumin fala o resultado
+            let mensagemSimulador = `Com a Endesa, pode poupar aproximadamente ${poupanca.toFixed(2)} euros na sua fatura!`;
+            let msg = new SpeechSynthesisUtterance(mensagemSimulador);
+            msg.lang = "pt-PT";
+            synthesis.speak(msg);
         }
+
+        // **Tenta iniciar a voz ao carregar a página (pode ser bloqueado pelo navegador)**
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(() => {
+                if (!synthesis.speaking) {
+                    ativarVoz();
+                }
+            }, 2000);  // Pequeno atraso para evitar bloqueios
+        });
+
     </script>
 </body>
 </html>
