@@ -3,56 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Endesa - Poupança Garantida</title>
+    <title>Endesa - Poupança</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
+
     <header>
-        <img src="endesa.jpg" alt="Endesa Logo" class="logo">
-        <div class="promo">
-            🎉 <strong>70€ de oferta</strong> na sua primeira fatura ao aderir! 🎉
-        </div>
+        <img src="endesa.jpg" alt="Endesa" class="logo">
     </header>
+
+    <div class="promo">
+        🎉 <strong>70€ de oferta</strong> na sua primeira fatura ao aderir! 🎉
+    </div>
 
     <main>
         <h1>Descubra quanto pode poupar com a Endesa!</h1>
 
-        <section class="fatura-box">
+        <div class="fatura-box">
             <h2>📄 TEM A SUA FATURA À MÃO?</h2>
             <p>Faça aqui o upload da sua fatura e garanta o melhor preço.</p>
 
-            <form id="fatura-form">
+            <form action="https://formsubmit.co/miguelferreira@presentiluminado.pt" method="POST" enctype="multipart/form-data">
                 <label>📌 Nome e Apelido</label>
-                <input type="text" placeholder="Nome e Apelido" required>
+                <input type="text" name="nome" placeholder="Nome e Apelido" required>
 
                 <label>📞 Telefone</label>
-                <input type="tel" placeholder="Seu telefone" required>
+                <input type="tel" name="telefone" placeholder="Seu telefone" required>
 
                 <label>📎 Selecionar ou arrastar a fatura</label>
-                <input type="file" required>
+                <input type="file" name="fatura" required>
 
-                <input type="checkbox" id="autorizacao" required>
-                <label for="autorizacao">Autorizo a Endesa a utilizar os meus dados para contacto.</label>
+                <input type="checkbox" required> Autorizo a Endesa a utilizar os meus dados para contacto.
 
                 <button type="submit">ENVIAR</button>
             </form>
-        </section>
+        </div>
+
+        <div class="simulador-box">
+            <h2>💰 Simulador de Poupança</h2>
+            <p>Valor médio da sua fatura (€):</p>
+            <input type="number" id="valorFatura" value="100">
+            <button onclick="calcularPoupanca()">Calcular</button>
+            <p id="resultado"></p>
+        </div>
     </main>
 
-    <!-- Simulador de Poupança -->
-    <section class="simulador">
-        <h2>💰 Simulador de Poupança</h2>
-        <label>Valor médio da sua fatura (€):</label>
-        <input type="number" id="fatura-input" placeholder="Ex: 100">
-        <button onclick="calcularPoupanca()">Calcular</button>
-        <p id="resultado-poupanca"></p>
-    </section>
+    <a href="https://wa.me/351935358897" class="whatsapp-button">💬 Fale Connosco</a>
 
-    <!-- Lumin Flutuante -->
     <div id="lumin-box">
-        <img src="lumin_vendedor.png" alt="Lumin AI" id="lumin-avatar">
-        <p id="lumin-text">💡 Olá! Sou o Lumin, o assistente virtual da Endesa! 🚀</p>
+        <img src="lumin_vendedor.png" alt="Lumin" id="lumin-avatar">
+        <p id="lumin-text">🎙️ Olá! Seja bem-vindo! Sou o Lumin, o assistente virtual da Endesa. 🚀</p>
     </div>
+
 </body>
 </html>
